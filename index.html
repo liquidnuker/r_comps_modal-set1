@@ -17,10 +17,10 @@
 </head>
 <body>
 
-<div class="modal1_bg">
+<div class="modal1_bg" id="modal1_bg">
   <div class="modal1_container col-xs-12">
     <div class="row">
-      Add note for: <button class="modal1_close">X</button>
+      Add note for: <button class="modal1_close" id="modal1_close">X</button>
     </div>
     <div class="modal1_content">    
       <p>Lorem ipsum dolor sit amet,...</p>
@@ -28,5 +28,15 @@
   </div>
 </div>
 
+<button id="modal1_toggle">show</button>
+<script>
+document.getElementById("modal1_toggle").addEventListener("click", function () {
+  document.getElementById("modal1_bg").style.display = "block";
+});
+
+document.getElementById("modal1_close").addEventListener("click", function () {
+  document.getElementById("modal1_bg").style.display = "none";
+});
+</script>
 </body>
 </html>
