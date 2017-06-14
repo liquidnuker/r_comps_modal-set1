@@ -6,8 +6,8 @@
   left: 0;
   right: 0;
   background: #666;
-  z-index: 9000;
   opacity: 0.8;
+  z-index: 9000;
 }
 
 .modal1_container {
@@ -22,10 +22,10 @@
 }
 
 .modal1_close {
+  @extend %padd--6;
   color: #fff;
   float: right;
   background-color: #000;
-  padding: 6px;
 }
 
 // mobile portrait (320x480) 
