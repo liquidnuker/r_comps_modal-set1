@@ -2,16 +2,16 @@ const path = require('path');
 const webpack = require('webpack');
 const Promise = require('es6-promise').Promise;
 
+const glob = require('glob-all');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
+const PurifyCSSPlugin = require('purifycss-webpack');
 const extractCSS = new ExtractTextPlugin('../[name].bundle.css');
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
-  entry: {
-    index: './index.js'
-    // vendor: ['jquery', 'lodash']
-  },
+  // Map, Set, requestAnimationFrame <IE11 polyfill
+  // entry: ['babel-polyfill', './index.jsx'],
+  entry: ['./index.js'],
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: "dist/",
@@ -23,7 +23,12 @@ module.exports = {
       // extractCSS
       {
         test: /\.scss$/,
-        loader: extractCSS.extract(['css-loader', 'sass-loader'])
+        loader: extractCSS.extract([{
+            loader: 'css-loader',
+            // options: { minimize: true }
+          },
+          'sass-loader'
+        ])
       },
       // url loader
       {
@@ -35,43 +40,32 @@ module.exports = {
           } // Convert images < 10k to base64 strings
         }]
       },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-            // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
-            // the "scss" and "sass" values for the lang attribute to the right configs here.
-            // other preprocessors should work out of the box, no loader config like this nessessary.
-            'scss': 'vue-style-loader!css-loader!sass-loader',
-            'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-          }
-          // other vue-loader options go here
-        }
-      },
       // babel-loader
       {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
-      }
+      },
     ]
   },
+  externals: {},
   plugins: [
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery'
-    }),
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: 'vendor',
+    extractCSS,
+    // new PurifyCSSPlugin({
+    //   // Give paths to parse for rules. These should be absolute!
+    //   paths: glob.sync([
+    //     path.join(__dirname, '*.html'),
+    //     // path.join(__dirname, 'src/components/*.jsx')
+    //   ]),
+    //   purifyOptions: {
+    //     whitelist: [ '*:not*' ]
+    //   },
+    //   minimize: true
     // }),
-    extractCSS
   ],
   resolve: {
     modules: [
       '../node_modules',
-      // 'D:/WINDOWS/GD2/web/dev/_npm/libs/jquery_3.1.1/node_modules',
-      // 'D:/WINDOWS/GD2/web/dev/_npm/utils/lodash_4.17.4/node_modules'
     ]
   }
 };
