@@ -1,7 +1,6 @@
 @import "variables";
 @import "mixins/border-radius";
 @import "mixins/box-shadow";
-@import "mixins/transition";
 
 // .modal-open      - body class for killing the scroll
 // .modal           - container to scroll within
@@ -47,7 +46,7 @@
 
   // When fading in the modal, animate it to slide down
   .modal.fade & {
-    @include transition($modal-transition);
+    // @include transition($modal-transition);
     transform: translate(0, -25%);
   }
   .modal.show & {
