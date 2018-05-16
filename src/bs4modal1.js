@@ -52,10 +52,10 @@ BS4Modal1.prototype = {
 };
 
 let zz = new BS4Modal1({
-  modalBackground: "exampleModalLong",
-  showBtn1: "showModal",
+  modalBackground: "bs4modal1_bg",
+  showBtn1: "bs4modal1_show",
   showBtn2: "", // optional
-  closeBtn1: "closetop",
+  closeBtn1: "bs4modal1_closebtn1",
   closeBtn2: "" // optional
 });
 

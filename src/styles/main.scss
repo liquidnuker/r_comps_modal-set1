@@ -2,19 +2,19 @@
 
 // 
 // ==================================================/
-// @import "vendor/andy";
-// @import "utils/helpers";
-// @import "base/reset";
-// @import "vendor/normalize"; 
+@import "vendor/andy";
+@import "utils/helpers";
+@import "base/reset";
+@import "vendor/normalize"; 
 
-// @import "base/fonts";
-// @import "base/colors";
-// @import "components/buttons";
+@import "base/fonts";
+@import "base/colors";
+@import "components/buttons";
 
-// @import "vendor/mq";
+@import "vendor/mq";
  
 @import "vendor/bootstrap4/bootstrap-grid";
-@import "vendor/bootstrap4/modal";
+@import "vendor/bootstrap4/bs4modal1";
 
 
 // show the active breakpoints (_mq.scss)
@@ -29,14 +29,9 @@
 
 // temp
 body {
-  position: relative;
-  // @extend %system_normal--300;
+  @extend %system_normal--300;
 }
 
 .item-id {
   background-color: #ccc;
-}
-
-.modal {
-  overflow-y: scroll;
 }
