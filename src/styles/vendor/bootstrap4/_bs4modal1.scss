@@ -2,6 +2,10 @@
 @import "mixins/border-radius";
 @import "mixins/box-shadow";
 
+// modal animations
+@import "../animatecss/base";
+@import "../animatecss/bounceIn";
+
 // .bs4modal1-open      - body class for killing the scroll
 // .bs4modal1           - container to scroll within
 // .bs4modal1-dialog    - positioning shell for the actual modal

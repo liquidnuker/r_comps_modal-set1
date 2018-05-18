@@ -1,5 +1,6 @@
 export default function BS4Modal1(opts) {
   this.modalBackground = opts.modalBackground;
+  this.modalContent = opts.modalContent;
   this.showBtn1 = opts.showBtn1;
   this.showBtn2 = opts.showBtn2;
   this.closeBtn1 = opts.closeBtn1;
@@ -8,6 +9,7 @@ export default function BS4Modal1(opts) {
 
 BS4Modal1.prototype = {
   init() {
+    this.modalContentClassName = document.getElementById(this.modalContent).getAttribute("class");
     this.addEvents();
   },
   addEvents() {
@@ -45,18 +47,21 @@ BS4Modal1.prototype = {
   },
   showModal() {
     document.getElementById(this.modalBackground).style.display = "block";
+    document.getElementById(this.modalContent).className += " animated bounceIn";
   },
   closeModal() {
     document.getElementById(this.modalBackground).style.display = "none";
+    document.getElementById(this.modalContent).className = this.modalContentClassName;
   }
 };
 
 let zz = new BS4Modal1({
   modalBackground: "bs4modal1_bg",
+  modalContent: "bs4modal1-content",
   showBtn1: "bs4modal1_show",
   showBtn2: "", // optional
   closeBtn1: "bs4modal1_closebtn1",
-  closeBtn2: "" // optional
+  closeBtn2: "" // optional,
 });
 
 zz.init();
