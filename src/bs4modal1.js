@@ -5,11 +5,15 @@ export default function BS4Modal1(opts) {
   this.showBtn2 = opts.showBtn2;
   this.closeBtn1 = opts.closeBtn1;
   this.closeBtn2 = opts.closeBtn2;
+  this.animateEntry = opts.animateEntry;
+  this.animateEntryClass = opts.animateEntryClass;
+  this.animateExit = opts.animateExit;
+  this.animateExitClass = opts.animateExitClass;
 }
 
 BS4Modal1.prototype = {
   init() {
-    this.modalContentClassName = document.getElementById(this.modalContent).getAttribute("class");
+    this.modalContentClass = document.getElementById(this.modalContent).getAttribute("class");
     this.addEvents();
   },
   addEvents() {
@@ -35,7 +39,7 @@ BS4Modal1.prototype = {
 
     document.body.addEventListener("keypress", (e) => {
       if (e.keyCode === 27) {
-        this.closeModal();
+        this.close();
       }
     });
 
@@ -47,11 +51,25 @@ BS4Modal1.prototype = {
   },
   showModal() {
     document.getElementById(this.modalBackground).style.display = "block";
-    document.getElementById(this.modalContent).className += " animated bounceIn";
+    if (this.animateEntry) {
+      document.getElementById(this.modalContent)
+      .className = `${this.modalContentClass} ${this.animateEntryClass}`;
+    }
   },
   closeModal() {
+    if (this.animateExit) {
+      document.getElementById(this.modalContent)
+      .className = `${this.modalContentClass} ${this.animateExitClass}`;
+
+      window.setTimeout(() => {
+        this.close();
+      }, 500);
+      window.clearTimeOut();
+    }
+    this.close();
+  },
+  close() {
     document.getElementById(this.modalBackground).style.display = "none";
-    document.getElementById(this.modalContent).className = this.modalContentClassName;
   }
 };
 
@@ -61,7 +79,11 @@ let zz = new BS4Modal1({
   showBtn1: "bs4modal1_show",
   showBtn2: "", // optional
   closeBtn1: "bs4modal1_closebtn1",
-  closeBtn2: "" // optional,
+  closeBtn2: "", // optional
+  animateEntry: true, // optional
+  animateEntryClass: "animated bounceIn",
+  animateExit: true, // optional
+  animateExitClass: "animated bounceOut"
 });
 
 zz.init();
