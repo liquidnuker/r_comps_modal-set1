@@ -72,18 +72,3 @@ BS4Modal1.prototype = {
     document.getElementById(this.modalBackground).style.display = "none";
   }
 };
-
-let zz = new BS4Modal1({
-  modalBackground: "bs4modal1_bg",
-  modalContent: "bs4modal1-content",
-  showBtn1: "bs4modal1_show",
-  showBtn2: "", // optional
-  closeBtn1: "bs4modal1_closebtn1",
-  closeBtn2: "", // optional
-  animateEntry: true, // optional
-  animateEntryClass: "animated bounceIn",
-  animateExit: true, // optional
-  animateExitClass: "animated bounceOut"
-});
-
-zz.init();
