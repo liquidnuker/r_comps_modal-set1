@@ -17,27 +17,49 @@
 </head>
 <body>
   <!-- bs4modal1 -->
-  <div class="bs4modal1" data-backdrop="static" id="bs4modal1_bg" tabindex="-1" role="dialog" aria-labelledby="bs4modal1_title" aria-hidden="true">
-    <div class="bs4modal1-dialog bs4modal1-md" role="document">
-      <div id="bs4modal1-content" class="bs4modal1-content">
-        <div class="bs4modal1-header">
-          <h5 class="bs4modal1-title" id="bs4modal1_title">bs4modal1 title</h5>
-          <button id="bs4modal1_closebtn1" type="button" class="btn btn1-01" data-dismiss="bs4modal1" aria-label="Close">
+  <div class="bs4modal" data-backdrop="static" id="bs4modal1_bg" tabindex="-1" role="dialog" aria-labelledby="bs4modal_title" aria-hidden="true">
+    <div class="bs4modal-dialog bs4modal-md" role="document">
+      <div id="bs4modal1-content" class="bs4modal-content">
+        <div class="bs4modal-header">
+          <h5 class="bs4modal-title" id="bs4modal_title">bs4modal title</h5>
+          <button id="bs4modal1_closebtn1" type="button" class="btn btn1-01" data-dismiss="bs4modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="bs4modal1-body">
+        <div class="bs4modal-body">
           <p>modal content...</p>
         </div>
-        <div class="bs4modal1-footer">
-          <button type="button" class="btn btn1-01" data-dismiss="bs4modal1">Close</button>
+        <div class="bs4modal-footer">
+          <button type="button" class="btn btn1-01" data-dismiss="bs4modal">Close</button>
           <button type="button" class="btn btn1-01">Save changes</button>
         </div>
       </div>
     </div>
   </div>
   <!-- /bs4modal1 -->
+  <!-- bs4modal2 -->
+  <div class="bs4modal" data-backdrop="static" id="bs4modal2_bg" tabindex="-1" role="dialog" aria-labelledby="bs4modal_title" aria-hidden="true">
+    <div class="bs4modal-dialog bs4modal-md" role="document">
+      <div id="bs4modal2-content" class="bs4modal-content">
+        <div class="bs4modal-header">
+          <h5 class="bs4modal-title" id="bs4modal_title">bs4modal title</h5>
+          <button id="bs4modal2_closebtn1" type="button" class="btn btn1-01" data-dismiss="bs4modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="bs4modal-body">
+          <p>modal content...</p>
+        </div>
+        <div class="bs4modal-footer">
+          <button type="button" class="btn btn1-01" data-dismiss="bs4modal">Close</button>
+          <button type="button" class="btn btn1-01">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /bs4modal2 -->
   <button id="bs4modal1_show" class="btn btn1-01">Modal1</button>
+  <button id="bs4modal2_show" class="btn btn1-01">Modal2</button>
   <script src="dist/main.bundle.js"></script>
 </body>
 </html>

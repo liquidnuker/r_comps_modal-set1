@@ -7,19 +7,19 @@
 @import "../animatecss/bounceIn";
 @import "../animatecss/bounceOut";
 
-// .bs4modal1-open      - body class for killing the scroll
-// .bs4modal1           - container to scroll within
-// .bs4modal1-dialog    - positioning shell for the actual modal
-// .bs4modal1-content   - actual modal w/ bg and corners and stuff
+// .bs4modal-open      - body class for killing the scroll
+// .bs4modal           - container to scroll within
+// .bs4modal-dialog    - positioning shell for the actual modal
+// .bs4modal-content   - actual modal w/ bg and corners and stuff
 // *mod             - modifications
 
 // Kill the scroll on the body
-.bs4modal1-open {
+.bs4modal-open {
   overflow: hidden;
 }
 
 // Container that the modal scrolls within
-.bs4modal1 {
+.bs4modal {
   background-color: rgba(0,0,0,0.4); // *mod
   position: fixed;
   top: 0;
@@ -39,14 +39,14 @@
   // *mod 
   overflow-y: scroll;
 
-  .bs4modal1-open & {
+  .bs4modal-open & {
     overflow-x: hidden;
     overflow-y: auto;
   }
 }
 
 // Shell div to position the modal with bottom padding
-.bs4modal1-dialog {
+.bs4modal-dialog {
   position: relative;
   width: auto;
   margin: $modal-dialog-margin;
@@ -54,28 +54,28 @@
   pointer-events: none;
 
   // When fading in the modal, animate it to slide down
-  .bs4modal1.fade & {
+  .bs4modal.fade & {
     // @include transition($modal-transition);
     transform: translate(0, -25%);
   }
-  .bs4modal1.show & {
+  .bs4modal.show & {
     transform: translate(0, 0);
   }
 }
 
-.bs4modal1-dialog-centered {
+.bs4modal-dialog-centered {
   display: flex;
   align-items: center;
   min-height: calc(100% - (#{$modal-dialog-margin} * 2));
 }
 
 // Actual modal
-.bs4modal1-content {
+.bs4modal-content {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%; // Ensure `.bs4modal1-content` extends the full width of the parent `.bs4modal1-dialog`
-  // counteract the pointer-events: none; in the .bs4modal1-dialog
+  width: 100%; // Ensure `.bs4modal-content` extends the full width of the parent `.bs4modal-dialog`
+  // counteract the pointer-events: none; in the .bs4modal-dialog
   pointer-events: auto;
   background-color: #fff; // *mod
   background-clip: padding-box;
@@ -91,7 +91,7 @@
 }
 
 // Modal background
-.bs4modal1-backdrop {
+.bs4modal-backdrop {
   position: fixed;
   top: 0;
   right: 0;
@@ -107,7 +107,7 @@
 
 // Modal header
 // Top section of the modal w/ title and dismiss
-.bs4modal1-header {
+.bs4modal-header {
   display: flex;
   align-items: flex-start; // so the close btn always stays on the upper right corner
   justify-content: space-between; // Put modal header elements (title and dismiss) on opposite ends
@@ -117,30 +117,30 @@
 
   .close {
     padding: $modal-header-padding;
-    // auto on the left force icon to the right even when there is no .bs4modal1-title
+    // auto on the left force icon to the right even when there is no .bs4modal-title
     margin: (-$modal-header-padding) (-$modal-header-padding) (-$modal-header-padding) auto;
   }
 }
 
 // Title text within header
-.bs4modal1-title {
+.bs4modal-title {
   @extend %padd--4;
   margin-bottom: 0;
   // line-height: $modal-title-line-height;
 }
 
 // Modal body
-// Where all modal content resides (sibling of .bs4modal1-header and .bs4modal1-footer)
-.bs4modal1-body {
+// Where all modal content resides (sibling of .bs4modal-header and .bs4modal-footer)
+.bs4modal-body {
   position: relative;
   // Enable `flex-grow: 1` so that the body take up as much space as possible
-  // when should there be a fixed height on `.bs4modal1-dialog`.
+  // when should there be a fixed height on `.bs4modal-dialog`.
   flex: 1 1 auto;
   padding: 8px; // *mod
 }
 
 // Footer (for actions)
-.bs4modal1-footer {
+.bs4modal-footer {
   display: flex;
   align-items: center; // vertically center
   justify-content: flex-end; // Right align buttons with flex property because text-align doesn't work on flex items
@@ -153,7 +153,7 @@
 }
 
 // Measure scrollbar width for padding body during modal show/hide
-.bs4modal1-scrollbar-measure {
+.bs4modal-scrollbar-measure {
   position: absolute;
   top: -9999px;
   width: 50px;
@@ -164,23 +164,23 @@
 // Scale up the modal
 @include media-breakpoint-up(sm) {
   // Automatically set modal's width for larger viewports
-  .bs4modal1-dialog {
+  .bs4modal-dialog {
     max-width: $modal-md;
     margin: $modal-dialog-margin-y-sm-up auto;
   }
 
-  .bs4modal1-dialog-centered {
+  .bs4modal-dialog-centered {
     min-height: calc(100% - (#{$modal-dialog-margin-y-sm-up} * 2));
   }
 
-  .bs4modal1-content {
+  .bs4modal-content {
     @include box-shadow($modal-content-box-shadow-sm-up);
   }
 
-  .bs4modal1-sm { max-width: $modal-sm; }
+  .bs4modal-sm { max-width: $modal-sm; }
 
 }
 
 @include media-breakpoint-up(lg) {
-  .bs4modal1-lg { max-width: $modal-lg; }
+  .bs4modal-lg { max-width: $modal-lg; }
 }
