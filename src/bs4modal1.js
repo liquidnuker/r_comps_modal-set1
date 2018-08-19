@@ -66,6 +66,7 @@ BS4Modal1.prototype = {
       }, 500);
       window.clearTimeOut();
     }
+    
     this.close();
   },
   close() {

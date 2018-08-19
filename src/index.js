@@ -24,9 +24,9 @@ let modal2 = new BS4Modal1({
   showBtn2: "", // optional
   closeBtn1: "bs4modal2_closebtn1",
   closeBtn2: "", // optional
-  // animateEntry: true, // optional
+  animateEntry: true, // optional
   animateEntryClass: "animated bounceIn",
-  // animateExit: true, // optional
+  animateExit: true, // optional
   animateExitClass: "animated bounceOut"
 });
 
