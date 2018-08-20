@@ -13,63 +13,77 @@ export default function BS4Modal1(opts) {
 
 BS4Modal1.prototype = {
   init() {
-    this.modalContentClass = document.getElementById(this.modalContent).getAttribute("class");
-    this.addEvents();
-  },
-  addEvents() {
-    document.getElementById(this.showBtn1).addEventListener("click", () => {
-      this.showModal();
-    });
-
-    if (this.showBtn2) {
-      document.getElementById(this.showBtn2).addEventListener("click", () => {
-        this.showModal();
-      });
-    }
-
-    document.getElementById(this.closeBtn1).addEventListener("click", () => {
-      this.closeModal();
-    });
-
-    if (this.closeBtn2) {
-      document.getElementById(this.closeBtn2).addEventListener("click", () => {
-        this.closeModal();
-      });
-    }
-
-    document.body.addEventListener("keypress", (e) => {
-      if (e.keyCode === 27) {
-        this.close();
+      this.modalContentClass = this.getId(this.modalContent).getAttribute("class");
+      this.addEvents();
+    },
+    getId(el) {
+      return document.getElementById(el);
+    },
+    generateListener(id, actions) {
+      // for optional items
+      if (id !== undefined) {
+        actions.forEach((i) => {
+          this.getId(id).addEventListener(i.ev, (event) => i.exec(event));
+        });
       }
-    });
+    },
+    addEvents() {
+      this.generateListener(this.showBtn1, [{
+        ev: "click",
+        exec: () => this.showModal()
+      }]);
 
-    document.getElementById(this.modalBackground).addEventListener("click", (e) => {
-      if (e.target.id === this.modalBackground) {
-        this.closeModal();
+      this.generateListener(this.showBtn2, [{
+        ev: "click",
+        exec: () => this.showModal()
+      }]);
+
+      this.generateListener(this.closeBtn1, [{
+        ev: "click",
+        exec: () => this.closeModal()
+      }]);
+
+      this.generateListener(this.closeBtn2, [{
+        ev: "click",
+        exec: () => this.closeModal()
+      }]);
+
+      this.generateListener(this.modalBackground, [{
+        ev: "click",
+        exec: (event) => {
+          if (event.target.id === this.modalBackground) {
+            this.closeModal();
+          }
+        }
+      }]);
+
+      document.body.addEventListener("keypress", (e) => {
+        if (e.keyCode === 27) {
+          this.close();
+        }
+      });
+    },
+    showModal() {
+      this.getId(this.modalBackground).style.display = "block";
+      this.getId(this.modalContent).className = `${this.modalContentClass}`;
+      if (this.animateEntry) {
+        this.getId(this.modalContent).className = `${this.modalContentClass} ${this.animateEntryClass}`;
       }
-    });
-  },
-  showModal() {
-    document.getElementById(this.modalBackground).style.display = "block";
-    if (this.animateEntry) {
-      document.getElementById(this.modalContent)
-      .className = `${this.modalContentClass} ${this.animateEntryClass}`;
-    }
-  },
-  closeModal() {
-    if (this.animateExit) {
-      document.getElementById(this.modalContent)
-      .className = `${this.modalContentClass} ${this.animateExitClass}`;
+    },
+    closeModal() {
+      if (this.animateExit) {
+        this.getId(this.modalContent)
+          .className = `${this.modalContentClass} ${this.animateExitClass}`;
 
-      window.setTimeout(() => {
-        this.close();
-      }, 500);
-      window.clearTimeOut();
+        window.setTimeout(() => {
+          this.close();
+        }, 500);
+        window.clearTimeOut();
+      }
+
+      this.close();
+    },
+    close() {
+      this.getId(this.modalBackground).style.display = "none";
     }
-    
-    this.close();
-  },
-  close() {
-    document.getElementById(this.modalBackground).style.display = "none";
-  }
 };
